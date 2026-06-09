@@ -728,9 +728,9 @@ $radius-card:    8px;
 }
 
 .no-rating-label {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   height: 26px;
-  line-height: 26px;
   padding: 0 9px;
   border-radius: 9999px;
   border: 1px solid $border-default;
@@ -738,6 +738,10 @@ $radius-card:    8px;
   color: $text-muted;
   font: 500 12px/1 var(--uw-font-sans, sans-serif);
   white-space: nowrap;
+}
+
+.td--rating {
+  vertical-align: middle;
 }
 
 // ── Content link ──────────────────────────────────────────────────────

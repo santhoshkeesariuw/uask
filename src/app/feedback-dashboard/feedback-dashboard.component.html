@@ -661,7 +661,7 @@
               @for (row of generalSlice(); track row.id) {
                 <tr class="grid-row" [class.user-filtered-row]="filters().userFilter === row.student">
                   <!-- Rating pill (number only, no empty stars) -->
-                  <td class="td">
+                  <td class="td td--rating">
                     @if (row.rating !== null) {
                       <div class="star-pill"
                            [style.background]="starColor(row.rating).bg"
