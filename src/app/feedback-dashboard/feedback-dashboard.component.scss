@@ -61,6 +61,10 @@ $radius-card:    8px;
     font: 400 18px/1 var(--uw-font-sans, sans-serif);
     transition: background 120ms;
     &:hover { background: rgba(255,255,255,0.06); }
+    &--active {
+      background: rgba(255,255,255,0.12);
+      border-bottom: 3px solid #1E88E5;
+    }
   }
 
   .nav-right {
@@ -854,7 +858,7 @@ $radius-card:    8px;
 .linked-card {
   margin-top: 10px;
   width: 100%;
-  max-width: 560px;
+  max-width: 100%;
   border-radius: 8px;
   background: #F8FBFF;
   border: 1px solid #DCE5F1;

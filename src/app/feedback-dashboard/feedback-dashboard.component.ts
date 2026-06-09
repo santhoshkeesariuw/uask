@@ -50,7 +50,7 @@ export class FeedbackDashboardComponent {
   readonly PAGE_SIZE = PAGE_SIZE;
   readonly PRODUCTS_LIST = PRODUCTS.filter(p => p !== 'All Products');
   readonly QBANK_LIST = QBANK_LIST;
-  readonly navItems = ['Change Product', 'Medical', 'DBank', 'iBank', 'Queues', 'Reports', 'Admin', 'More'];
+  readonly navItems = ['Change Product', 'Medical', 'DBank', 'iBank', 'Queues', 'Reports', 'Admin', 'UAsk Feedback', 'More'];
   readonly contentTypeOptions = [
     { value: 'Question',  label: 'Questions' },
     { value: 'Lecture',   label: 'Lectures' },
