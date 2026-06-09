@@ -9,7 +9,7 @@
   </div>
   <nav class="nav-items">
     @for (item of navItems; track item) {
-      <button class="nav-item" [class.nav-item--active]="item === 'UAsk Feedback'">{{ item }}<i class="fa-solid fa-chevron-down" style="font-size:11px"></i></button>
+      <button class="nav-item" [class.nav-item--active]="item === 'UAsk Feedback'">{{ item }}@if (item !== 'UAsk Feedback') {<i class="fa-solid fa-chevron-down" style="font-size:11px"></i>}</button>
     }
   </nav>
   <div class="nav-right">

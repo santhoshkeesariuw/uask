@@ -363,7 +363,7 @@ $radius-card:    8px;
   }
 }
 
-.dp-dates-wrap { padding: 0 14px; }
+.dp-dates-wrap { padding: 16px 16px 0; }
 .dp-dates-divider { height: 1px; background: #E8EEF6; }
 .dp-date-field {
   width: 100%;
@@ -371,7 +371,7 @@ $radius-card:    8px;
 }
 
 .dp-presets {
-  padding: 10px 12px;
+  padding: 10px 16px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6px;
@@ -398,7 +398,7 @@ $radius-card:    8px;
 }
 
 .dp-footer {
-  padding: 10px 12px;
+  padding: 10px 16px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
