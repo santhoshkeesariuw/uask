@@ -237,7 +237,7 @@
     <!-- User filter banner — shown when a student cell was clicked -->
     @if (filters().userFilter) {
       <div class="user-filter-banner">
-        <i class="fa-solid fa-user-check ufb-icon"></i>
+        <i class="fa-regular fa-user-check ufb-icon"></i>
         <span class="ufb-text">Filtering by user: <strong>{{ filters().userFilter }}</strong></span>
         <button class="ufb-reset-btn" (click)="clearUserFilter()">
           <i class="fa-solid fa-xmark"></i>
@@ -394,7 +394,7 @@
                     </div>
                     @if (row.kind === 'thumbs' && row.response) {
                       <button class="linked-toggle-btn" (click)="toggleResp(row.id)">
-                        <i class="fa-light fa-reply" style="font-size:11px"></i>
+                        <i class="fa-regular fa-reply" style="font-size:11px"></i>
                         uAsk Response
                         <i [class]="expandedResps().has(row.id) ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'"
                            style="font-size:10px"></i>
@@ -404,7 +404,7 @@
                           <div class="linked-card-body">
                             <div class="chat-block">
                               <div class="chat-avatar chat-avatar--ai">
-                                <i class="fa-light fa-reply" style="font-size:12px"></i>
+                                <i class="fa-regular fa-reply" style="font-size:12px"></i>
                               </div>
                               <div class="chat-body">
                                 <div class="chat-who">uAsk response</div>
@@ -438,7 +438,7 @@
                           <div class="linked-card-body">
                             <div class="chat-block">
                               <div class="chat-avatar chat-avatar--user">
-                                <i class="fa-solid fa-user" style="font-size:12px"></i>
+                                <i class="fa-regular fa-user" style="font-size:12px"></i>
                               </div>
                               <div class="chat-body">
                                 <div class="chat-who">Student request</div>
@@ -447,7 +447,7 @@
                             </div>
                             <div class="chat-block">
                               <div class="chat-avatar chat-avatar--ai">
-                                <i class="fa-light fa-reply" style="font-size:12px"></i>
+                                <i class="fa-regular fa-reply" style="font-size:12px"></i>
                               </div>
                               <div class="chat-body">
                                 <div class="chat-who">uAsk response</div>
@@ -742,7 +742,7 @@
                             <div class="linked-card-body">
                               <div class="chat-block">
                                 <div class="chat-avatar chat-avatar--user">
-                                  <i class="fa-solid fa-user" style="font-size:12px"></i>
+                                  <i class="fa-regular fa-user" style="font-size:12px"></i>
                                 </div>
                                 <div class="chat-body">
                                   <div class="chat-who">Student request</div>
@@ -751,7 +751,7 @@
                               </div>
                               <div class="chat-block">
                                 <div class="chat-avatar chat-avatar--ai">
-                                  <i class="fa-light fa-reply" style="font-size:12px"></i>
+                                  <i class="fa-regular fa-reply" style="font-size:12px"></i>
                                 </div>
                                 <div class="chat-body">
                                   <div class="chat-who">uAsk response</div>
