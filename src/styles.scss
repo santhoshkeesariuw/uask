@@ -1,0 +1,237 @@
+@use '@angular/material' as mat;
+
+// ── Material core ────────────────────────────────────────────────────
+@include mat.core();
+
+// ── Theme: UWorld brand palette ──────────────────────────────────────
+// Primary  → UWorld brand blue  #1E88E5
+// Tertiary → cyan accent
+$theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary:    mat.$blue-palette,
+    tertiary:   mat.$cyan-palette,
+  ),
+  typography: (
+    brand-family: '"Proxima Nova", "Mona Sans", sans-serif',
+    plain-family: '"Proxima Nova", "Mona Sans", sans-serif',
+    bold-weight:  600,
+  ),
+  density: (scale: 0),
+));
+
+:root {
+  @include mat.all-component-themes($theme);
+
+  // ── Wire UWorld brand colors into Material M3 system tokens ─────
+  --mat-sys-primary:              #1E88E5;
+  --mat-sys-on-primary:           #FFFFFF;
+  --mat-sys-primary-container:    #DBECFB;
+  --mat-sys-on-primary-container: #15253D;
+  --mat-sys-surface:              #FFFFFF;
+  --mat-sys-surface-variant:      #F0F1F2;
+  --mat-sys-background:           #F4F7FB;
+  --mat-sys-on-surface:           #15253D;
+  --mat-sys-on-surface-variant:   #6B7280;
+  --mat-sys-outline:              #D1D3D8;
+  --mat-sys-outline-variant:      #E8EEF6;
+
+  // ── Filled text-field (MDC) — light UWorld surface look ─────────
+  --mdc-filled-text-field-container-color:              #F0F1F2;
+  --mdc-filled-text-field-hover-container-color:        #E8EEF6;
+  --mdc-filled-text-field-active-indicator-color:       #D1D3D8;
+  --mdc-filled-text-field-hover-active-indicator-color: #6B7280;
+  --mdc-filled-text-field-focus-active-indicator-color: #1E88E5;
+  --mdc-filled-text-field-label-text-color:             #6B7280;
+  --mdc-filled-text-field-hover-label-text-color:       #4C515B;
+  --mdc-filled-text-field-focus-label-text-color:       #1E88E5;
+  --mdc-filled-text-field-input-text-color:             #15253D;
+  --mdc-filled-text-field-input-text-placeholder-color: #898E99;
+  --mdc-filled-text-field-label-text-font:  "Proxima Nova", "Mona Sans", sans-serif;
+  --mdc-filled-text-field-input-text-font:  "Proxima Nova", "Mona Sans", sans-serif;
+  --mdc-filled-text-field-label-text-size:  14px;
+  --mdc-filled-text-field-input-text-size:  14px;
+  --mdc-filled-text-field-container-shape: 6px;
+
+  // ── Select panel ────────────────────────────────────────────────
+  --mat-select-trigger-text-color:              #15253D;
+  --mat-select-trigger-text-font:               "Proxima Nova", "Mona Sans", sans-serif;
+  --mat-select-trigger-text-size:               14px;
+  --mat-option-label-text-color:                #2D3036;
+  --mat-option-label-text-font:                 "Proxima Nova", "Mona Sans", sans-serif;
+  --mat-option-label-text-size:                 14px;
+  --mat-option-selected-state-label-text-color: #1E88E5;
+  --mat-option-selected-state-layer-color:      rgba(30, 136, 229, 0.08);
+  --mat-select-panel-background-color:          #FFFFFF;
+  // Select arrow — M3 bakes #343DFF from mat.$blue-palette; override to brand blue
+  --mat-select-focused-arrow-color:             #1E88E5;
+  --mat-select-enabled-arrow-color:             #6B7280;
+
+  // mat-button (text) — M3 compiles primary into a direct rule; expose it as a var too
+  --mat-text-button-label-text-color:           #1E88E5;
+  --mat-text-button-state-layer-color:          #1E88E5;
+  --mdc-text-button-label-text-color:           #1E88E5;
+
+  // ── Pseudo-checkbox (mat-select multi-select) ────────────────────
+  // M3 bakes #343DFF from mat.$blue-palette; override everything to brand blue
+  --mat-pseudo-checkbox-full-selected-icon-color:            #1E88E5;
+  --mat-pseudo-checkbox-minimal-selected-checkmark-color:    #1E88E5;
+  --mat-pseudo-checkbox-full-unselected-icon-color:          #6B7280;
+
+  // ── Real MDC checkbox (if used elsewhere) ───────────────────────
+  --mat-checkbox-selected-icon-color:                        #1E88E5;
+  --mat-checkbox-selected-focus-icon-color:                  #1E88E5;
+  --mat-checkbox-selected-hover-icon-color:                  #1E88E5;
+  --mat-checkbox-selected-pressed-icon-color:                #1E88E5;
+  --mat-checkbox-selected-focus-state-layer-color:           rgba(30, 136, 229, 0.12);
+  --mat-checkbox-selected-hover-state-layer-color:           rgba(30, 136, 229, 0.08);
+  --mat-checkbox-unselected-pressed-state-layer-color:       rgba(30, 136, 229, 0.12);
+
+  // ── Option hover/focus state layers ─────────────────────────────
+  --mat-option-focus-state-layer-color:   rgba(30, 136, 229, 0.08);
+  --mat-option-hover-state-layer-color:   rgba(30, 136, 229, 0.05);
+
+  // ── Datepicker ──────────────────────────────────────────────────
+  --mat-datepicker-calendar-date-selected-state-background-color: #1E88E5;
+  --mat-datepicker-calendar-date-in-range-state-background-color: #DBECFB;
+  --mat-datepicker-calendar-date-today-state-outline-color:       #1E88E5;
+  --mat-datepicker-calendar-body-label-text-color:                #6B7280;
+}
+
+// ── mat-flat-button / mat-raised-button brand blue ────────────────────
+.mat-mdc-unelevated-button.mat-primary,
+.mat-mdc-raised-button.mat-primary {
+  background-color: #1E88E5 !important;
+  color: #fff !important;
+  --mat-filled-button-container-color: #1E88E5;
+  --mat-protected-button-container-color: #1E88E5;
+}
+
+// ── Filter bar: collapse subscript space so form fields are 56px total ──
+// (Component-scoped CSS can't pierce Angular Material's internal template;
+//  this must live here as a global rule.)
+.filter-field .mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+// ── Global reset ─────────────────────────────────────────────────────
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Proxima Nova", "Mona Sans", sans-serif;
+  background: #F4F7FB;
+  color: #15253D;
+}
+
+// ── Date picker panel: white fields, no radius, brand Ok button ──────
+.date-picker-panel {
+  // White container overrides the global #F0F1F2 rule
+  .mat-mdc-form-field .mat-mdc-text-field-wrapper.mdc-text-field--filled,
+  .mat-mdc-text-field-wrapper.mdc-text-field--filled {
+    background-color: #fff !important;
+    border-radius: 0 !important;
+  }
+  .mat-mdc-form-field:hover .mat-mdc-text-field-wrapper.mdc-text-field--filled,
+  .mat-mdc-text-field-wrapper.mdc-text-field--filled:hover {
+    background-color: #F4F7FB !important;
+  }
+  // Label color — override M3 default (#46464F → brand grey)
+  .mat-mdc-floating-label, .mdc-floating-label {
+    color: #6B7280 !important;
+  }
+  // Focused / floating label — brand blue
+  .mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
+    color: #1E88E5 !important;
+  }
+  // Input text color — override M3 near-black to UWorld navy
+  .mdc-text-field__input {
+    color: #15253D !important;
+  }
+  // Input font size — M3 defaults to 16px; align with rest of filter bar
+  .mdc-text-field__input,
+  .mdc-floating-label {
+    font-size: 14px !important;
+  }
+  // Calendar toggle icon — grey
+  .mat-datepicker-toggle .mat-mdc-icon-button svg,
+  .mat-datepicker-toggle .mat-mdc-icon-button .mat-icon {
+    fill: #6B7280;
+    color: #6B7280;
+  }
+}
+
+// ── Force Angular Material M3 filled field to use UWorld surface ─────
+// M3 tints the surface-variant with the primary palette internally
+// and generates higher-specificity component-scoped rules — !important wins.
+.mat-mdc-form-field .mat-mdc-text-field-wrapper.mdc-text-field--filled,
+.mat-mdc-text-field-wrapper.mdc-text-field--filled {
+  background-color: #F0F1F2 !important;
+  border-radius: 6px 6px 0 0;
+}
+
+.mat-mdc-form-field:hover .mat-mdc-text-field-wrapper.mdc-text-field--filled,
+.mat-mdc-text-field-wrapper.mdc-text-field--filled:hover {
+  background-color: #E8EEF6 !important;
+}
+
+// Focus indicator line colour — force brand blue, override M3 baked currentColor
+.mdc-text-field--filled .mdc-line-ripple::before {
+  border-bottom-color: #D1D3D8 !important;
+}
+.mdc-text-field--filled .mdc-line-ripple::after {
+  border-bottom-color: #1E88E5 !important;
+}
+
+// Focus overlay — M3 bakes a near-black (#1B1B1F) tint; replace with brand-blue tint
+.mat-mdc-form-field-focus-overlay {
+  background-color: rgba(30, 136, 229, 0.05) !important;
+}
+
+// Label colour when focused
+.mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
+  color: #1E88E5 !important;
+}
+
+// Arrow icon colour (focused and default)
+.mat-mdc-form-field.mat-focused .mat-mdc-select-arrow,
+.mat-mdc-select-arrow { color: #1E88E5 !important; }
+.mat-mdc-form-field:not(.mat-focused) .mat-mdc-select-arrow { color: #6B7280 !important; }
+
+// mat-button[color="primary"] — brand blue text, no fill, brand-tinted ripple
+.mat-mdc-button.mat-primary {
+  color: #1E88E5 !important;
+  --mat-text-button-label-text-color:  #1E88E5;
+  --mat-text-button-state-layer-color: #1E88E5;
+  background: transparent !important;
+}
+.mat-mdc-button.mat-primary .mat-ripple-element,
+.mat-mdc-button.mat-primary .mat-mdc-button-ripple { background: rgba(30, 136, 229, 0.10) !important; }
+
+// Select panel background
+.mat-mdc-select-panel {
+  background: #FFFFFF;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+// Option states
+.mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+  background: rgba(30, 136, 229, 0.06);
+}
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) {
+  background: rgba(30, 136, 229, 0.10);
+  .mdc-list-item__primary-text { color: #1E88E5; }
+}
+
+// Datepicker toggle button colour
+.mat-datepicker-toggle .mat-mdc-icon-button svg {
+  fill: #6B7280;
+}
+.mat-datepicker-toggle:hover .mat-mdc-icon-button svg {
+  fill: #1E88E5;
+}

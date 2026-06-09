@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "uask-feedback-preview",
+      "runtimeExecutable": "/tmp/node-v22.13.1-darwin-arm64/bin/node",
+      "runtimeArgs": ["./node_modules/@angular/cli/bin/ng.js", "serve", "--port", "4200", "--open", "false"],
+      "cwd": ".",
+      "port": 4200
+    }
+  ]
+}

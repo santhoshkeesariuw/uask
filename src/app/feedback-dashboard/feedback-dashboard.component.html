@@ -1,0 +1,806 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     TOP NAVIGATION
+══════════════════════════════════════════════════════════════════ -->
+<div class="top-nav">
+  <div class="nav-logo">
+    <svg width="42" height="42" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14.365 1.39226e-07C11.5236 0.000395691 8.74614 0.843318 6.38378 2.42218C4.02142 4.00104 2.18028 6.24494 1.09315 8.87014C0.00602365 11.4953 -0.278264 14.384 0.276235 17.1707C0.830734 19.9575 2.19912 22.5173 4.20836 24.5264C6.2176 26.5355 8.77746 27.9037 11.5643 28.458C14.3511 29.0123 17.2397 28.7278 19.8648 27.6405C22.4899 26.5532 24.7337 24.7119 26.3124 22.3494C27.8911 19.9869 28.7338 17.2094 28.734 14.368C28.7341 12.481 28.3626 10.6125 27.6405 8.86922C26.9184 7.12589 25.86 5.54188 24.5257 4.20765C23.1913 2.87341 21.6072 1.8151 19.8639 1.09314C18.1205 0.371189 16.252 -0.000262544 14.365 1.39226e-07ZM23.883 7.756C24.1573 8.31356 24.2503 8.94294 24.149 9.556C24.1041 9.26551 24.0151 8.98359 23.885 8.72C23.5192 8.01456 22.8885 7.48307 22.1313 7.24215C21.374 7.00124 20.5522 7.0706 19.846 7.435C19.111 7.79281 18.5471 8.42645 18.277 9.198C18.2472 8.52005 18.4516 7.85249 18.8557 7.30733C19.2598 6.76218 19.8391 6.37261 20.4964 6.20399C21.1538 6.03538 21.8491 6.09799 22.4657 6.38131C23.0824 6.66463 23.5828 7.15143 23.883 7.76V7.756Z" fill="white"/>
+    </svg>
+  </div>
+  <nav class="nav-items">
+    @for (item of navItems; track item) {
+      <button class="nav-item">{{ item }}<i class="fa-solid fa-chevron-down" style="font-size:11px"></i></button>
+    }
+  </nav>
+  <div class="nav-right">
+    <button class="env-pill"><i class="fa-solid fa-display"></i> In - Dev</button>
+    <button class="nav-icon-btn"><i class="fa-regular fa-comment-dots"></i></button>
+    <button class="nav-icon-btn badge-btn"><i class="fa-regular fa-envelope"></i><span class="nav-badge">1</span></button>
+    <button class="nav-icon-btn badge-btn"><i class="fa-regular fa-bell"></i><span class="nav-badge">1</span></button>
+    <button class="nav-icon-btn"><i class="fa-regular fa-right-from-bracket"></i></button>
+    <button class="nav-icon-btn"><i class="fa-regular fa-bars"></i></button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SUBHEADER
+══════════════════════════════════════════════════════════════════ -->
+<div class="subheader">
+  <div class="breadcrumb">
+    <i class="fa-regular fa-house"></i>
+    <i class="fa-solid fa-caret-right bc-sep"></i>
+    <span class="bc-current">UAsk Feedback</span>
+  </div>
+  <div class="welcome-text">Welcome <strong>Santhosh</strong></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════════════════════════════ -->
+<main class="main-content">
+
+  <!-- ── KPI Strip (no trends, plain counts) ─────────────────────── -->
+  <div class="stats-strip">
+    <div class="stat-card">
+      <div class="stat-header">
+        <i class="fa-solid fa-comment-dots stat-icon" style="color:#1E88E5"></i>
+        <span class="stat-label">Total Feedback</span>
+      </div>
+      <span class="stat-value">{{ stats().total }}</span>
+    </div>
+    <div class="stat-card">
+      <div class="stat-header">
+        <i class="fa-solid fa-thumbs-up stat-icon" style="color:#1F9D57"></i>
+        <span class="stat-label">Thumbs Up</span>
+      </div>
+      <span class="stat-value">{{ stats().up }}</span>
+    </div>
+    <div class="stat-card">
+      <div class="stat-header">
+        <i class="fa-solid fa-thumbs-down stat-icon" style="color:#D14343"></i>
+        <span class="stat-label">Thumbs Down</span>
+      </div>
+      <span class="stat-value">{{ stats().down }}</span>
+    </div>
+    <div class="stat-card">
+      <div class="stat-header">
+        <i class="fa-solid fa-pen-to-square stat-icon" style="color:#7B5FF0"></i>
+        <span class="stat-label">General Feedback</span>
+      </div>
+      <span class="stat-value">{{ stats().general }}</span>
+    </div>
+  </div>
+
+  <!-- ── Filter Bar ───────────────────────────────────────────────── -->
+  <div class="filter-bar">
+
+    <!-- Product multi-select -->
+    <mat-form-field appearance="fill" class="filter-field filter-field--product">
+      <mat-label>Product</mat-label>
+      <mat-select multiple [value]="filters().product" (selectionChange)="setProducts($event.value)">
+        <mat-select-trigger>
+          @if (filters().product.length === 0) { <span></span> }
+          @else if (filters().product.length === 1) { {{ filters().product[0] }} }
+          @else { {{ filters().product[0] }} <span class="select-more">(+{{ filters().product.length - 1 }} more)</span> }
+        </mat-select-trigger>
+        @for (p of PRODUCTS_LIST; track p) {
+          <mat-option [value]="p">{{ p }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <!-- QBank multi-select -->
+    <mat-form-field appearance="fill" class="filter-field filter-field--qbank">
+      <mat-label>QBank</mat-label>
+      <mat-select multiple [value]="filters().qbank" (selectionChange)="setQbank($event.value)">
+        <mat-select-trigger>
+          @if (filters().qbank.length === 0) { <span></span> }
+          @else if (filters().qbank.length === 1) {
+            {{ filters().qbank[0] === 'none' ? 'No QBank' : filters().qbank[0] }}
+          } @else {
+            {{ filters().qbank[0] === 'none' ? 'No QBank' : filters().qbank[0] }}
+            <span class="select-more">(+{{ filters().qbank.length - 1 }} more)</span>
+          }
+        </mat-select-trigger>
+        <mat-option value="none">No QBank</mat-option>
+        @for (q of QBANK_LIST; track q) {
+          <mat-option [value]="q">{{ q }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Feedback Type dropdown -->
+    <mat-form-field appearance="fill" class="filter-field filter-field--feedback-type">
+      <mat-label>Feedback Type</mat-label>
+      <mat-select [value]="filters().feedbackType" (selectionChange)="setFeedbackType($event.value)">
+        <mat-option value="all">All Feedback</mat-option>
+        <mat-option value="thumbs">Thumbs Up / Down</mat-option>
+        <mat-option value="general">General Feedback</mat-option>
+        <mat-option value="general-with-prompt">General Feedback With Prompt</mat-option>
+        <mat-option value="general-without-prompt">General Feedback Without Prompt</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Conditional: Average Rating range (for general types) -->
+    @if (showRatingFilter()) {
+      <mat-form-field appearance="fill" class="filter-field filter-field--rating">
+        <mat-label>Average Rating</mat-label>
+        <mat-select [value]="filters().ratingRange" (selectionChange)="setRatingRange($event.value)">
+          @for (r of RATING_RANGES; track r.value) {
+            <mat-option [value]="r.value">{{ r.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    }
+
+    <!-- Conditional: Thumbs Direction (for thumbs type) -->
+    @if (showThumbsDirectionFilter()) {
+      <mat-form-field appearance="fill" class="filter-field filter-field--direction">
+        <mat-label>Direction</mat-label>
+        <mat-select [value]="filters().thumbsDirection" (selectionChange)="setThumbsDirection($event.value)">
+          <mat-option value="all">All</mat-option>
+          <mat-option value="up">Thumbs Up</mat-option>
+          <mat-option value="down">Thumbs Down</mat-option>
+        </mat-select>
+      </mat-form-field>
+    }
+
+    <!-- Content Type multi-select -->
+    <mat-form-field appearance="fill" class="filter-field filter-field--content">
+      <mat-label>Content Type</mat-label>
+      <mat-select multiple [value]="filters().contentType" (selectionChange)="setContentType($event.value)">
+        <mat-select-trigger>
+          @if (filters().contentType.length === 0) { <span></span> }
+          @else if (filters().contentType.length === 1) {
+            {{ filters().contentType[0] === 'none' ? 'No Content' : filters().contentType[0] }}
+          } @else {
+            {{ filters().contentType[0] === 'none' ? 'No Content' : filters().contentType[0] }}
+            <span class="select-more">(+{{ filters().contentType.length - 1 }} more)</span>
+          }
+        </mat-select-trigger>
+        @for (opt of contentTypeOptions; track opt.value) {
+          <mat-option [value]="opt.value">{{ opt.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Student / User ID search -->
+    <mat-form-field appearance="fill" class="filter-field filter-field--student">
+      <mat-label>Student / User ID</mat-label>
+      <span matTextPrefix class="student-prefix-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+      <input matInput [value]="filters().student"
+             (input)="setStudentFilter($any($event.target).value)"
+             placeholder="username or ID">
+    </mat-form-field>
+
+    <!-- Date Range custom panel -->
+    <div class="date-range-wrapper">
+      <button class="date-range-trigger" [class.dp-open]="datePickerOpen()" (click)="toggleDatePicker()">
+        <i class="fa-regular fa-calendar drt-cal-icon"></i>
+        <div class="drt-inner">
+          <span class="drt-label">Date Range</span>
+          <span class="drt-value">{{ dateRangeLabel() || 'Select date range' }}</span>
+        </div>
+        <i class="fa-solid fa-chevron-down drt-caret" [class.open]="datePickerOpen()"></i>
+      </button>
+
+      @if (datePickerOpen()) {
+        <div class="dp-backdrop" (click)="closeDatePicker()"></div>
+        <div class="date-picker-panel">
+          <div class="dp-dates-wrap">
+            <mat-form-field appearance="fill" class="dp-date-field">
+              <mat-label>Select start date</mat-label>
+              <input matInput [matDatepicker]="startPicker" [value]="tempStartObj()"
+                     (dateChange)="onTempStartChange($event.value)" placeholder="MM/DD/YYYY">
+              <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+              <mat-datepicker #startPicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="dp-dates-divider"></div>
+          <div class="dp-dates-wrap">
+            <mat-form-field appearance="fill" class="dp-date-field">
+              <mat-label>Select end date</mat-label>
+              <input matInput [matDatepicker]="endPicker" [value]="tempEndObj()"
+                     (dateChange)="onTempEndChange($event.value)" placeholder="MM/DD/YYYY">
+              <mat-datepicker-toggle matIconSuffix [for]="endPicker"></mat-datepicker-toggle>
+              <mat-datepicker #endPicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="dp-presets">
+            @for (p of datePresets; track p.k) {
+              <button class="dp-preset-pill" [class.active]="filters().preset === p.k"
+                      (click)="setPresetInPanel(p.k)">
+                @if (filters().preset === p.k) { <i class="fa-solid fa-check" style="font-size:10px"></i> }
+                {{ p.l }}
+              </button>
+            }
+          </div>
+          <div class="dp-footer">
+            <button mat-button class="dp-clear-btn" (click)="clearDatePicker()">Clear</button>
+            <button mat-flat-button color="primary" class="dp-ok-btn" (click)="applyDatePicker()">Ok</button>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Reset All Filters -->
+    <button class="reset-all-btn" (click)="resetAllFilters()">
+      <i class="fa-solid fa-rotate-left"></i>
+      Reset Filters
+    </button>
+
+  </div><!-- /filter-bar -->
+
+  <!-- ── Results panel ─────────────────────────────────────────────── -->
+  <div class="results-panel">
+
+    <!-- User filter banner — shown when a student cell was clicked -->
+    @if (filters().userFilter) {
+      <div class="user-filter-banner">
+        <i class="fa-solid fa-user-check ufb-icon"></i>
+        <span class="ufb-text">Filtering by user: <strong>{{ filters().userFilter }}</strong></span>
+        <button class="ufb-reset-btn" (click)="clearUserFilter()">
+          <i class="fa-solid fa-xmark"></i>
+          Remove filter
+        </button>
+      </div>
+    }
+
+    <!-- Tab strip row -->
+    <div class="tab-strip-row">
+      <div class="tabs">
+        <button class="tab-btn" [class.tab-selected]="activeTab() === 'all'" (click)="setActiveTab('all')">
+          <i [class]="activeTab()==='all' ? 'fa-solid fa-table-list' : 'fa-regular fa-table-list'"></i>
+          All
+          <span class="tab-count" [class.tab-count-active]="activeTab()==='all'">{{ allRows().length }}</span>
+          @if (activeTab() === 'all') { <span class="tab-underline"></span> }
+        </button>
+        <button class="tab-btn" [class.tab-selected]="activeTab() === 'thumbs'" (click)="setActiveTab('thumbs')">
+          <i [class]="activeTab()==='thumbs' ? 'fa-solid fa-thumbs-up' : 'fa-regular fa-thumbs-up'"></i>
+          Thumbs Up / Down
+          <span class="tab-count" [class.tab-count-active]="activeTab()==='thumbs'">{{ thumbsRows().length }}</span>
+          @if (activeTab() === 'thumbs') { <span class="tab-underline"></span> }
+        </button>
+        <button class="tab-btn" [class.tab-selected]="activeTab() === 'general'" (click)="setActiveTab('general')">
+          <i [class]="activeTab()==='general' ? 'fa-solid fa-pen-to-square' : 'fa-regular fa-pen-to-square'"></i>
+          General Feedback
+          <span class="tab-count" [class.tab-count-active]="activeTab()==='general'">{{ generalRows().length }}</span>
+          @if (activeTab() === 'general') { <span class="tab-underline"></span> }
+        </button>
+      </div>
+
+      <!-- Active filter chips -->
+      @if (activeChips().length > 0) {
+        <div class="active-chips">
+          @for (chip of activeChips(); track chip.k) {
+            <span class="filter-chip">
+              {{ chip.l }}
+              <button class="chip-x" (click)="removeChip(chip.k)">
+                <i class="fa-solid fa-xmark" style="font-size:10px"></i>
+              </button>
+            </span>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Results sub-header -->
+    <div class="results-subheader">
+      <div class="total-results">
+        <span class="tr-label">Total Results</span>
+        <span class="tr-count">{{ activeCount() | number }}</span>
+      </div>
+      <div class="sort-by-row">
+        <i class="fa-solid fa-arrow-down-wide-short" style="font-size:12px"></i>
+        Sort by <strong>Most recent</strong>
+        <i class="fa-solid fa-chevron-down" style="font-size:10px"></i>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════
+         ALL TAB — Combined chronological view
+    ════════════════════════════════════════════════════════════ -->
+    @if (activeTab() === 'all') {
+      @if (allRows().length === 0) {
+        <div class="empty-state">
+          <i class="fa-regular fa-face-sad-tear" style="font-size:32px;color:#C7CCD3;margin-bottom:10px"></i>
+          <div>No feedback matches your filters.</div>
+        </div>
+      } @else {
+        <div class="table-scroll">
+          <table class="grid-table">
+            <colgroup>
+              <col style="width:70px">
+              <col style="width:75px">
+              <col style="width:75px">
+              <col style="width:75px">
+              <col style="width:500px">
+              <col style="width:120px">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Product</th>
+                <th>Content</th>
+                <th>Student / User ID</th>
+                <th>Feedback / Request</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of allSlice(); track row.id) {
+                <tr class="grid-row" [class.user-filtered-row]="filters().userFilter === row.student">
+                  <!-- Type badge -->
+                  <td class="td">
+                    @if (row.kind === 'thumbs') {
+                      <div class="type-badge type-badge--icon"
+                           [class.type-badge--up]="row.thumbsRating === 'up'"
+                           [class.type-badge--down]="row.thumbsRating === 'down'">
+                        <i [class]="row.thumbsRating === 'up' ? 'fa-solid fa-thumbs-up' : 'fa-solid fa-thumbs-down'"
+                           style="font-size:13px"></i>
+                      </div>
+                    } @else {
+                      @if (row.generalRating !== null) {
+                        <div class="type-badge"
+                             [style.background]="starColor(row.generalRating).bg"
+                             [style.color]="starColor(row.generalRating).fg"
+                             [style.border-color]="starColor(row.generalRating).border">
+                          <i class="fa-solid fa-star" style="font-size:11px"></i>
+                          {{ row.generalRating }}
+                        </div>
+                      } @else {
+                        <div class="type-badge type-badge--general">
+                          <i class="fa-regular fa-comment" style="font-size:11px"></i>
+                          Feedback
+                        </div>
+                      }
+                    }
+                  </td>
+                  <!-- Product / QBank -->
+                  <td class="td">
+                    <div class="cell-two-line">
+                      <span class="cell-line-primary">{{ row.product }}</span>
+                      @if (row.qbank) {
+                        <span class="cell-line-secondary">{{ row.qbank }}</span>
+                      } @else {
+                        <span class="cell-line-secondary cell-line-muted">No QBank</span>
+                      }
+                    </div>
+                  </td>
+                  <!-- Content Type + ID -->
+                  <td class="td">
+                    @if (row.contentType !== '—' && row.contentId) {
+                      <a href="#" class="content-link" (click)="$event.preventDefault()">
+                        <div class="content-type-label">{{ row.contentType }}</div>
+                        <div class="content-id-mono">{{ stripId(row.contentId) }}</div>
+                      </a>
+                    } @else {
+                      <span class="na-dash">—</span>
+                    }
+                  </td>
+                  <!-- Student / User ID -->
+                  <td class="td">
+                    <button class="student-link"
+                            [class.student-link--active]="filters().userFilter === row.student"
+                            (click)="setUserFilter(row.student)">
+                      <span class="student-avatar">{{ studentInitials(row.student) }}</span>
+                      <span class="student-name">{{ row.student }}</span>
+                    </button>
+                  </td>
+                  <!-- Preview text -->
+                  <td class="td">
+                    <div class="expand-text" [class.resp-text]="row.kind === 'general'">
+                      {{ truncate(row.previewText, 120) }}
+                    </div>
+                    @if (row.kind === 'thumbs' && row.response) {
+                      <button class="linked-toggle-btn" (click)="toggleResp(row.id)">
+                        <i class="fa-solid fa-sparkles" style="font-size:11px"></i>
+                        uAsk Response
+                        <i [class]="expandedResps().has(row.id) ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'"
+                           style="font-size:10px"></i>
+                      </button>
+                      @if (expandedResps().has(row.id)) {
+                        <div class="linked-card">
+                          <div class="linked-card-body">
+                            <div class="chat-block">
+                              <div class="chat-avatar chat-avatar--ai">
+                                <i class="fa-solid fa-sparkles" style="font-size:12px"></i>
+                              </div>
+                              <div class="chat-body">
+                                <div class="chat-who">uAsk response</div>
+                                <div class="chat-text chat-text--ai">{{ row.response }}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      }
+                    }
+                    @if (row.kind === 'general' && row.linked) {
+                      <button class="linked-toggle-btn" (click)="toggleLinked(row.id)">
+                        <i class="fa-solid fa-link" style="font-size:11px"></i>
+                        Linked Prompt &amp; Response
+                        <i [class]="openLinked().has(row.id) ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'"
+                           style="font-size:10px"></i>
+                      </button>
+                      @if (openLinked().has(row.id)) {
+                        <div class="linked-card">
+                          <div class="linked-card-header">
+                            <span class="lc-meta-label">Linked to</span>
+                            @if (!row.linked.contentId || row.linked.contentType === '—') {
+                              <span class="lc-meta-mono">General session context</span>
+                            } @else {
+                              <a href="#" class="content-link" (click)="$event.preventDefault()">
+                                <div class="content-type-label">{{ row.linked.contentType }}</div>
+                                <div class="content-id-mono">{{ stripId(row.linked.contentId) }}</div>
+                              </a>
+                            }
+                          </div>
+                          <div class="linked-card-body">
+                            <div class="chat-block">
+                              <div class="chat-avatar chat-avatar--user">
+                                <i class="fa-solid fa-user" style="font-size:12px"></i>
+                              </div>
+                              <div class="chat-body">
+                                <div class="chat-who">Student request</div>
+                                <div class="chat-text">{{ row.linked.request }}</div>
+                              </div>
+                            </div>
+                            <div class="chat-block">
+                              <div class="chat-avatar chat-avatar--ai">
+                                <i class="fa-solid fa-sparkles" style="font-size:12px"></i>
+                              </div>
+                              <div class="chat-body">
+                                <div class="chat-who">uAsk response</div>
+                                <div class="chat-text chat-text--ai">{{ row.linked.response }}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      }
+                    }
+                  </td>
+                  <!-- Timestamp -->
+                  <td class="td ts-td">{{ row.ts }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <!-- All tab pagination -->
+        <div class="pagination-row">
+          <span class="pg-count">
+            <strong>{{ pageStart(allPage(), allRows().length) }}–{{ pageEnd(allPage(), allRows().length) }}</strong>
+            of <strong>{{ allRows().length }}</strong> results
+          </span>
+          <div class="pg-btns">
+            <button class="pg-btn" [disabled]="allPage() === 1"
+                    (click)="setAllPage(1)" title="First">
+              <i class="fa-solid fa-angles-left" style="font-size:12px"></i>
+            </button>
+            <button class="pg-btn" [disabled]="allPage() === 1"
+                    (click)="setAllPage(allPage() - 1)" title="Previous">
+              <i class="fa-solid fa-angle-left" style="font-size:12px"></i>
+            </button>
+            <span class="pg-info">Page {{ allPage() }} of {{ allTotalPages() }}</span>
+            <button class="pg-btn" [disabled]="allPage() === allTotalPages()"
+                    (click)="setAllPage(allPage() + 1)" title="Next">
+              <i class="fa-solid fa-angle-right" style="font-size:12px"></i>
+            </button>
+            <button class="pg-btn" [disabled]="allPage() === allTotalPages()"
+                    (click)="setAllPage(allTotalPages())" title="Last">
+              <i class="fa-solid fa-angles-right" style="font-size:12px"></i>
+            </button>
+          </div>
+        </div>
+      }
+    }
+
+    <!-- ════════════════════════════════════════════════════════════
+         THUMBS GRID  (Session removed; Product+QBank combined; Student clickable)
+    ════════════════════════════════════════════════════════════ -->
+    @if (activeTab() === 'thumbs') {
+      @if (thumbsRows().length === 0) {
+        <div class="empty-state">
+          <i class="fa-regular fa-face-sad-tear" style="font-size:32px;color:#C7CCD3;margin-bottom:10px"></i>
+          <div>No thumbs feedback matches your filters.</div>
+        </div>
+      } @else {
+        <div class="table-scroll">
+          <table class="grid-table">
+            <colgroup>
+              <col style="width:60px">
+              <col style="width:90px">
+              <col style="width:90px">
+              <col style="width:90px">
+              <col style="width:220px">
+              <col style="width:220px">
+              <col style="width:130px">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Rating</th>
+                <th>Product</th>
+                <th>Content</th>
+                <th>Student / User ID</th>
+                <th>Request</th>
+                <th>Response</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of thumbsSlice(); track row.id) {
+                <tr class="grid-row" [class.user-filtered-row]="filters().userFilter === row.student">
+                  <!-- Rating icon -->
+                  <td class="td">
+                    <div class="rating-thumb" [class.thumb-up]="row.rating==='up'"
+                         [class.thumb-down]="row.rating==='down'">
+                      <i [class]="row.rating==='up' ? 'fa-solid fa-thumbs-up' : 'fa-solid fa-thumbs-down'"
+                         style="font-size:15px"></i>
+                    </div>
+                  </td>
+                  <!-- Product / QBank -->
+                  <td class="td">
+                    <div class="cell-two-line">
+                      <span class="cell-line-primary">{{ row.product }}</span>
+                      @if (row.qbank) {
+                        <span class="cell-line-secondary">{{ row.qbank }}</span>
+                      } @else {
+                        <span class="cell-line-secondary cell-line-muted">No QBank</span>
+                      }
+                    </div>
+                  </td>
+                  <!-- Content Type + ID -->
+                  <td class="td">
+                    @if (row.contentType === '—' || !row.contentId) {
+                      <span class="na-dash">—</span>
+                    } @else {
+                      <a href="#" class="content-link" (click)="$event.preventDefault()">
+                        <div class="content-type-label">{{ row.contentType }}</div>
+                        <div class="content-id-mono">{{ stripId(row.contentId) }}</div>
+                      </a>
+                    }
+                  </td>
+                  <!-- Student / User ID (clickable to inline-filter) -->
+                  <td class="td">
+                    <button class="student-link"
+                            [class.student-link--active]="filters().userFilter === row.student"
+                            (click)="setUserFilter(row.student)">
+                      <span class="student-avatar">{{ studentInitials(row.student) }}</span>
+                      <span class="student-name">{{ row.student }}</span>
+                    </button>
+                  </td>
+                  <!-- Request -->
+                  <td class="td">
+                    <div class="expand-text">
+                      {{ isReqExpanded(row.id) ? row.request : truncate(row.request, 120) }}
+                      @if (row.request.length > 120) {
+                        <button class="show-more-btn" (click)="toggleReq(row.id)">
+                          {{ isReqExpanded(row.id) ? 'Show less' : 'Show more' }}
+                        </button>
+                      }
+                    </div>
+                  </td>
+                  <!-- Response -->
+                  <td class="td">
+                    <div class="expand-text resp-text">
+                      {{ isRespExpanded(row.id) ? row.response : truncate(row.response, 140) }}
+                      @if (row.response.length > 140) {
+                        <button class="show-more-btn" (click)="toggleResp(row.id)">
+                          {{ isRespExpanded(row.id) ? 'Show less' : 'Show more' }}
+                        </button>
+                      }
+                    </div>
+                  </td>
+                  <!-- Timestamp -->
+                  <td class="td ts-td">{{ row.ts }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <!-- Thumbs pagination -->
+        <div class="pagination-row">
+          <span class="pg-count">
+            <strong>{{ pageStart(thumbsPage(), thumbsRows().length) }}–{{ pageEnd(thumbsPage(), thumbsRows().length) }}</strong>
+            of <strong>{{ thumbsRows().length }}</strong> results
+          </span>
+          <div class="pg-btns">
+            <button class="pg-btn" [disabled]="thumbsPage() === 1"
+                    (click)="setThumbsPage(1)" title="First">
+              <i class="fa-solid fa-angles-left" style="font-size:12px"></i>
+            </button>
+            <button class="pg-btn" [disabled]="thumbsPage() === 1"
+                    (click)="setThumbsPage(thumbsPage() - 1)" title="Previous">
+              <i class="fa-solid fa-angle-left" style="font-size:12px"></i>
+            </button>
+            <span class="pg-info">Page {{ thumbsPage() }} of {{ thumbsTotalPages() }}</span>
+            <button class="pg-btn" [disabled]="thumbsPage() === thumbsTotalPages()"
+                    (click)="setThumbsPage(thumbsPage() + 1)" title="Next">
+              <i class="fa-solid fa-angle-right" style="font-size:12px"></i>
+            </button>
+            <button class="pg-btn" [disabled]="thumbsPage() === thumbsTotalPages()"
+                    (click)="setThumbsPage(thumbsTotalPages())" title="Last">
+              <i class="fa-solid fa-angles-right" style="font-size:12px"></i>
+            </button>
+          </div>
+        </div>
+      }
+    }
+
+    <!-- ════════════════════════════════════════════════════════════
+         GENERAL FEEDBACK GRID  (no empty stars; ContentType col; Student clickable; linked for ≤3 only)
+    ════════════════════════════════════════════════════════════ -->
+    @if (activeTab() === 'general') {
+      @if (generalRows().length === 0) {
+        <div class="empty-state">
+          <i class="fa-regular fa-face-sad-tear" style="font-size:32px;color:#C7CCD3;margin-bottom:10px"></i>
+          <div>No general feedback matches your filters.</div>
+        </div>
+      } @else {
+        <div class="table-scroll">
+          <table class="grid-table">
+            <colgroup>
+              <col style="width:70px">
+              <col style="width:60px">
+              <col style="width:60px">
+              <col style="width:55px">
+              <col style="width:500px">
+              <col style="width:130px">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Rating</th>
+                <th>Product</th>
+                <th>Content</th>
+                <th>Student / User ID</th>
+                <th>Feedback</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of generalSlice(); track row.id) {
+                <tr class="grid-row" [class.user-filtered-row]="filters().userFilter === row.student">
+                  <!-- Rating pill (number only, no empty stars) -->
+                  <td class="td">
+                    @if (row.rating !== null) {
+                      <div class="star-pill"
+                           [style.background]="starColor(row.rating).bg"
+                           [style.color]="starColor(row.rating).fg"
+                           [style.border-color]="starColor(row.rating).border">
+                        <i class="fa-solid fa-star" style="font-size:11px"></i>
+                        <span>{{ row.rating }}</span>
+                      </div>
+                    } @else {
+                      <span class="no-rating-label">No Rating</span>
+                    }
+                  </td>
+                  <!-- Product / QBank -->
+                  <td class="td">
+                    <div class="cell-two-line">
+                      <span class="cell-line-primary">{{ row.product }}</span>
+                      @if (row.qbank) {
+                        <span class="cell-line-secondary">{{ row.qbank }}</span>
+                      } @else {
+                        <span class="cell-line-secondary cell-line-muted">No QBank</span>
+                      }
+                    </div>
+                  </td>
+                  <!-- Content Type + ID (from linked context) -->
+                  <td class="td">
+                    @if (row.linked && row.linked.contentId && row.linked.contentType !== '—') {
+                      <a href="#" class="content-link" (click)="$event.preventDefault()">
+                        <div class="content-type-label">{{ row.linked.contentType }}</div>
+                        <div class="content-id-mono">{{ stripId(row.linked.contentId) }}</div>
+                      </a>
+                    } @else {
+                      <span class="na-dash">—</span>
+                    }
+                  </td>
+                  <!-- Student / User ID -->
+                  <td class="td">
+                    <button class="student-link"
+                            [class.student-link--active]="filters().userFilter === row.student"
+                            (click)="setUserFilter(row.student)">
+                      <span class="student-avatar">{{ studentInitials(row.student) }}</span>
+                      <span class="student-name">{{ row.student }}</span>
+                    </button>
+                  </td>
+                  <!-- Feedback text + linked context (rating ≤ 3 only) -->
+                  <td class="td">
+                    <div class="feedback-cell">
+                      <div class="expand-text">
+                        {{ isFeedbackExpanded(row.id) ? row.feedback : truncate(row.feedback, 240) }}
+                        @if (row.feedback.length > 240) {
+                          <button class="show-more-btn" (click)="toggleFeedback(row.id)">
+                            {{ isFeedbackExpanded(row.id) ? 'Show less' : 'Show more' }}
+                          </button>
+                        }
+                      </div>
+
+                      <!-- Linked prompt/response — show whenever linked context exists -->
+                      @if (row.linked) {
+                        <button class="linked-toggle-btn" (click)="toggleLinked(row.id)">
+                          <i class="fa-solid fa-link" style="font-size:11px"></i>
+                          Linked Prompt &amp; Response
+                          <i [class]="isLinkedOpen(row.id) ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'"
+                             style="font-size:10px"></i>
+                        </button>
+
+                        @if (isLinkedOpen(row.id)) {
+                          <div class="linked-card">
+                            <div class="linked-card-header">
+                              <span class="lc-meta-label">Linked to</span>
+                              @if (!row.linked.contentId || row.linked.contentType === '—') {
+                                <span class="lc-meta-mono">General session context</span>
+                              } @else {
+                                <a href="#" class="content-link" (click)="$event.preventDefault()">
+                                  <div class="content-type-label">{{ row.linked.contentType }}</div>
+                                  <div class="content-id-mono">{{ stripId(row.linked.contentId) }}</div>
+                                </a>
+                              }
+                            </div>
+                            <div class="linked-card-body">
+                              <div class="chat-block">
+                                <div class="chat-avatar chat-avatar--user">
+                                  <i class="fa-solid fa-user" style="font-size:12px"></i>
+                                </div>
+                                <div class="chat-body">
+                                  <div class="chat-who">Student request</div>
+                                  <div class="chat-text">{{ row.linked.request }}</div>
+                                </div>
+                              </div>
+                              <div class="chat-block">
+                                <div class="chat-avatar chat-avatar--ai">
+                                  <i class="fa-solid fa-sparkles" style="font-size:12px"></i>
+                                </div>
+                                <div class="chat-body">
+                                  <div class="chat-who">uAsk response</div>
+                                  <div class="chat-text chat-text--ai">{{ row.linked.response }}</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        }
+                      }
+                    </div>
+                  </td>
+                  <!-- Timestamp -->
+                  <td class="td ts-td">{{ row.ts }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <!-- General pagination -->
+        <div class="pagination-row">
+          <span class="pg-count">
+            <strong>{{ pageStart(generalPage(), generalRows().length) }}–{{ pageEnd(generalPage(), generalRows().length) }}</strong>
+            of <strong>{{ generalRows().length }}</strong> results
+          </span>
+          <div class="pg-btns">
+            <button class="pg-btn" [disabled]="generalPage() === 1"
+                    (click)="setGeneralPage(1)" title="First">
+              <i class="fa-solid fa-angles-left" style="font-size:12px"></i>
+            </button>
+            <button class="pg-btn" [disabled]="generalPage() === 1"
+                    (click)="setGeneralPage(generalPage() - 1)" title="Previous">
+              <i class="fa-solid fa-angle-left" style="font-size:12px"></i>
+            </button>
+            <span class="pg-info">Page {{ generalPage() }} of {{ generalTotalPages() }}</span>
+            <button class="pg-btn" [disabled]="generalPage() === generalTotalPages()"
+                    (click)="setGeneralPage(generalPage() + 1)" title="Next">
+              <i class="fa-solid fa-angle-right" style="font-size:12px"></i>
+            </button>
+            <button class="pg-btn" [disabled]="generalPage() === generalTotalPages()"
+                    (click)="setGeneralPage(generalTotalPages())" title="Last">
+              <i class="fa-solid fa-angles-right" style="font-size:12px"></i>
+            </button>
+          </div>
+        </div>
+      }
+    }
+
+  </div><!-- /results-panel -->
+
+</main>
+

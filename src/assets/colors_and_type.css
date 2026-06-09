@@ -1,0 +1,265 @@
+/* ────────────────────────────────────────────────────────────────
+   UWorld CMS Design System — colors_and_type.css
+   Source of truth for color and type tokens.
+   Pulled from /CMS-Design-System.fig (Colors, Typography, Admin
+   Component Library frames).
+   ──────────────────────────────────────────────────────────────── */
+
+/* Fonts ----------------------------------------------------------- */
+/* Proxima Nova is the official UWorld type. It is a licensed font;
+   we ship the open-source closest match (Mona Sans) and remap
+   "Proxima Nova" to it via the @font-face below. Drop in a real
+   Proxima Nova .woff2 to replace.                                   */
+
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap");
+
+/* Proxima Nova — OTF files go in src/assets/fonts/
+   Drop files in and the url() sources below will activate.
+   Weights available: 400 (Regular), 500 (Medium), 600 (Semibold), 700 (Bold) */
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("fonts/ProximaNova-Regular.otf") format("opentype"),
+       local("Proxima Nova"), local("ProximaNova"),
+       local("Mona Sans"), local("MonaSans");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("fonts/ProximaNova-RegularIt.otf") format("opentype"),
+       local("Proxima Nova"), local("ProximaNova");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("fonts/ProximaNova-Medium.otf") format("opentype"),
+       local("Proxima Nova"), local("ProximaNova");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("fonts/ProximaNova-Semibold.otf") format("opentype"),
+       local("Proxima Nova"), local("ProximaNova");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("fonts/ProximaNova-Bold.otf") format("opentype"),
+       local("Proxima Nova"), local("ProximaNova");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* === Brand ==================================================== */
+  --uw-brand-blue:        #1E88E5;  /* Bleu de France — primary */
+  --uw-brand-blue-700:    #1B7CD0;  /* hover */
+  --uw-brand-blue-800:    #196EBC;  /* pressed */
+  --uw-brand-blue-900:    #1660A5;  /* text-strong */
+  --uw-brand-blue-300:    #A1CCF4;  /* focus ring */
+  --uw-brand-blue-100:    #DBECFB;  /* surface soft */
+  --uw-brand-blue-50:     #EDF5FD;  /* surface subtle */
+  --uw-nav-charcoal:      #23282D;  /* top nav background */
+
+  /* === Core neutrals (Ink scale) ================================= */
+  --uw-ink-1000:          #0C0D0F;  /* headings, strong text */
+  --uw-ink-900:           #15253D;  /* primary text */
+  --uw-ink-800:           #2D3036;  /* body text */
+  --uw-ink-700:           #3B434B;  /* secondary text */
+  --uw-ink-600:           #4C515B;  /* body-large, body-reg */
+  --uw-ink-500:           #6B7280;  /* caption, table-title */
+  --uw-ink-400:           #898E99;  /* placeholder, tertiary */
+  --uw-ink-300:           #9CA1AA;  /* disabled-fg, divider strong */
+  --uw-ink-200:           #D1D3D8;  /* border default */
+  --uw-ink-100:           #E8EEF6;  /* divider/border subtle */
+  --uw-ink-50:            #F0F1F2;  /* hover surface */
+  --uw-ink-25:            #F8F9FA;  /* breadcrumb / subheader bg */
+
+  /* === Surface system ========================================== */
+  --uw-surface-page:      #F4F7FB;  /* app body bg */
+  --uw-surface-card:      #FFFFFF;  /* card / panel bg */
+  --uw-surface-sunken:    #FAFAFC;  /* nested surface */
+  --uw-surface-raised:    #FFFFFF;  /* modals / popovers */
+  --uw-surface-overlay:   rgba(15,26,43,0.55); /* scrim */
+  --uw-surface-tint:      #F8FBFF;  /* sidebar bg */
+
+  /* === Semantic — Primary (info / link) ========================= */
+  --uw-primary-solid:     var(--uw-brand-blue);
+  --uw-primary-on:        #FFFFFF;
+  --uw-primary-hover:     var(--uw-brand-blue-700);
+  --uw-primary-pressed:   var(--uw-brand-blue-800);
+  --uw-primary-focus:     var(--uw-brand-blue-300);
+  --uw-primary-bg:        var(--uw-brand-blue-50);
+  --uw-primary-bg-strong: var(--uw-brand-blue-100);
+  --uw-primary-border:    #C5E0F8;
+  --uw-primary-text:      #1F86E5;
+  --uw-primary-text-strong: var(--uw-brand-blue-900);
+
+  /* === Semantic — Success ====================================== */
+  --uw-success-solid:     #1F9D57;
+  --uw-success-on:        #FFFFFF;
+  --uw-success-bg:        #EDF7F2;
+  --uw-success-bg-strong: #D2EBDD;
+  --uw-success-border:    #BFE0CB;
+  --uw-success-text:      #1D9050;
+
+  /* === Semantic — Warning ====================================== */
+  --uw-warning-solid:     #C27A00;
+  --uw-warning-on:        #FFFFFF;
+  --uw-warning-bg:        #FAF4EB;
+  --uw-warning-bg-strong: #F3E4CC;
+  --uw-warning-border:    #EBD3A6;
+  --uw-warning-text:      #B27000;
+
+  /* === Semantic — Danger ====================================== */
+  --uw-danger-solid:      #D14343;
+  --uw-danger-on:         #FFFFFF;
+  --uw-danger-bg:         #FBF0F0;
+  --uw-danger-bg-strong:  #F6D9D9;
+  --uw-danger-border:     #EFC0C0;
+  --uw-danger-text:       #C03E3E;
+
+  /* === Semantic — Accent palette (used for tags / categories) === */
+  --uw-violet-solid:      #6F62E8;
+  --uw-violet-bg:         #F3F2FD;
+  --uw-cyan-solid:        #10A3B8;
+  --uw-cyan-bg:           #ECF8F9;
+  --uw-orange-solid:      #FF7A45;
+  --uw-orange-bg:         #FFF4F0;
+  --uw-magenta-solid:     #E1468C;
+  --uw-magenta-bg:        #FDF0F6;
+
+  /* === Text tokens ============================================= */
+  --uw-fg-primary:        var(--uw-ink-1000);
+  --uw-fg-body:           var(--uw-ink-800);
+  --uw-fg-secondary:      var(--uw-ink-600);
+  --uw-fg-tertiary:       var(--uw-ink-500);
+  --uw-fg-disabled:       rgba(45,48,54,0.38);
+  --uw-fg-on-primary:     #FFFFFF;
+  --uw-fg-on-dark:        #FFFFFF;
+  --uw-fg-link:           var(--uw-primary-text);
+  --uw-fg-link-hover:     #144D99;
+
+  /* === Border tokens ============================================ */
+  --uw-border-strong:     var(--uw-ink-300);
+  --uw-border-default:    var(--uw-ink-200);
+  --uw-border-subtle:     var(--uw-ink-100);
+  --uw-border-focus:      var(--uw-brand-blue);
+
+  /* === State layers (Material-style overlays) =================== */
+  --uw-state-hover-light: rgba(0,0,0,0.05);
+  --uw-state-press-light: rgba(0,0,0,0.10);
+  --uw-state-hover-dark:  rgba(255,255,255,0.10);
+  --uw-state-press-dark:  rgba(255,255,255,0.16);
+  --uw-state-focus-ring:  0 0 0 3px rgba(30,136,229,0.35);
+  --uw-opacity-disabled:  0.38;
+
+  /* === Radius scale ============================================ */
+  --uw-radius-xs:         2px;
+  --uw-radius-sm:         4px;   /* default field/button */
+  --uw-radius-md:         5px;   /* card */
+  --uw-radius-lg:         8px;   /* button square */
+  --uw-radius-xl:         12px;  /* panel */
+  --uw-radius-2xl:        16px;  /* large card */
+  --uw-radius-3xl:        32px;  /* modal */
+  --uw-radius-pill:       9999px;
+
+  /* === Elevation / shadow ====================================== */
+  --uw-elev-0: 0 0 0 0 rgba(33,33,33,0);
+  --uw-elev-1: 0 1px 2px 0 rgba(16,31,58,0.08);
+  --uw-elev-2: 0 1px 3px 0 rgba(16,31,58,0.08), 0 1px 2px 0 rgba(16,31,58,0.06);
+  --uw-elev-3: 0 4px 8px -2px rgba(16,31,58,0.10), 0 2px 4px -1px rgba(16,31,58,0.06);
+  --uw-elev-4: 0 10px 20px -5px rgba(16,31,58,0.12), 0 4px 8px -2px rgba(16,31,58,0.06);
+  --uw-elev-5: 0 20px 32px -8px rgba(16,31,58,0.16), 0 8px 16px -4px rgba(16,31,58,0.08);
+  --uw-elev-modal: 0 24px 48px -12px rgba(15,26,43,0.30);
+
+  /* === Spacing scale (4-px base) =============================== */
+  --uw-space-1: 4px;
+  --uw-space-2: 8px;
+  --uw-space-3: 12px;
+  --uw-space-4: 16px;
+  --uw-space-5: 20px;
+  --uw-space-6: 24px;
+  --uw-space-7: 32px;
+  --uw-space-8: 40px;
+  --uw-space-9: 48px;
+  --uw-space-10: 64px;
+
+  /* === Type families ============================================ */
+  --uw-font-sans:   "Proxima Nova", "Mona Sans", "Source Sans 3",
+                    -apple-system, BlinkMacSystemFont, "Segoe UI",
+                    Roboto, Helvetica, Arial, sans-serif;
+  --uw-font-mono:   "Space Mono", "JetBrains Mono", ui-monospace,
+                    SFMono-Regular, Menlo, Monaco, monospace;
+  --uw-font-icons:  "Font Awesome 7 Pro", "Font Awesome 6 Pro",
+                    "Font Awesome 6 Free";
+
+  /* === Base type tokens (size / line-height / weight / tracking) */
+  /* Display */
+  --uw-display-1-size: 48px;  --uw-display-1-lh: 64px;
+  --uw-display-1-weight: 700; --uw-display-1-track: -0.3px;
+  --uw-display-2-size: 36px;  --uw-display-2-lh: 54px;
+  --uw-display-2-weight: 700; --uw-display-2-track: -0.3px;
+  /* Headings */
+  --uw-h1-size: 30px; --uw-h1-lh: 40px; --uw-h1-weight: 700; --uw-h1-track: -0.3px;
+  --uw-h2-size: 24px; --uw-h2-lh: 36px; --uw-h2-weight: 700; --uw-h2-track: -0.15px;
+  --uw-h3-size: 20px; --uw-h3-lh: 32px; --uw-h3-weight: 700; --uw-h3-track: -0.15px;
+  --uw-h4-size: 16px; --uw-h4-lh: 24px; --uw-h4-weight: 500; --uw-h4-track: 0;
+  /* Sub-Headings */
+  --uw-sh1-size: 16px; --uw-sh1-lh: 16px; --uw-sh1-weight: 700;
+  --uw-sh2-size: 14px; --uw-sh2-lh: 16px; --uw-sh2-weight: 700;
+  /* Body */
+  --uw-body-lg-size: 18px; --uw-body-lg-lh: 1.75; --uw-body-lg-weight: 400;
+  --uw-body-size:    16px; --uw-body-lh:    1.5;  --uw-body-weight:   400;
+  --uw-body-strong-weight: 500;
+  --uw-body-sm-size: 14px; --uw-body-sm-lh: 1.5;  --uw-body-sm-weight: 400;
+  /* Add-ons */
+  --uw-caption-size: 12px; --uw-caption-lh: 16px; --uw-caption-weight: 400; --uw-caption-track: 0.2px;
+  --uw-overline-size: 10px;--uw-overline-lh: 16px;--uw-overline-weight: 500;--uw-overline-track: 0.5px;
+  --uw-button-size: 14px;  --uw-button-lh: 1.1;   --uw-button-weight: 500;  --uw-button-track: 0.15px;
+  --uw-link-size:   16px;  --uw-link-lh: 1.5;     --uw-link-weight: 500;
+  --uw-code-size:   14px;  --uw-code-lh: 1.5;     --uw-code-weight: 400;
+  --uw-table-title-size: 12px; --uw-table-title-lh: 16px;
+  --uw-table-title-weight: 500; --uw-table-title-track: 0.5px;
+}
+
+/* === Semantic element styles ====================================
+   Apply by adding classes or wrapping in a scope; never restyle bare
+   `h1`, `body`, etc — apps mix layouts and the design system shouldn't
+   leak into them.                                                   */
+
+.uw-text-display-1 { font: var(--uw-display-1-weight) var(--uw-display-1-size)/var(--uw-display-1-lh) var(--uw-font-sans); letter-spacing: var(--uw-display-1-track); color: var(--uw-fg-primary); }
+.uw-text-display-2 { font: var(--uw-display-2-weight) var(--uw-display-2-size)/var(--uw-display-2-lh) var(--uw-font-sans); letter-spacing: var(--uw-display-2-track); color: var(--uw-fg-primary); }
+
+.uw-text-h1 { font: var(--uw-h1-weight) var(--uw-h1-size)/var(--uw-h1-lh) var(--uw-font-sans); letter-spacing: var(--uw-h1-track); color: var(--uw-fg-primary); }
+.uw-text-h2 { font: var(--uw-h2-weight) var(--uw-h2-size)/var(--uw-h2-lh) var(--uw-font-sans); letter-spacing: var(--uw-h2-track); color: var(--uw-fg-primary); }
+.uw-text-h3 { font: var(--uw-h3-weight) var(--uw-h3-size)/var(--uw-h3-lh) var(--uw-font-sans); letter-spacing: var(--uw-h3-track); color: var(--uw-fg-primary); }
+.uw-text-h4 { font: var(--uw-h4-weight) var(--uw-h4-size)/var(--uw-h4-lh) var(--uw-font-sans); color: var(--uw-fg-primary); }
+
+.uw-text-sh1 { font: var(--uw-sh1-weight) var(--uw-sh1-size)/var(--uw-sh1-lh) var(--uw-font-sans); color: var(--uw-fg-primary); }
+.uw-text-sh2 { font: var(--uw-sh2-weight) var(--uw-sh2-size)/var(--uw-sh2-lh) var(--uw-font-sans); color: var(--uw-fg-primary); }
+
+.uw-text-body-lg     { font: var(--uw-body-lg-weight) var(--uw-body-lg-size)/var(--uw-body-lg-lh) var(--uw-font-sans); color: var(--uw-ink-600); }
+.uw-text-body        { font: var(--uw-body-weight) var(--uw-body-size)/var(--uw-body-lh) var(--uw-font-sans); color: var(--uw-ink-600); }
+.uw-text-body-strong { font: var(--uw-body-strong-weight) var(--uw-body-size)/var(--uw-body-lh) var(--uw-font-sans); color: var(--uw-fg-primary); }
+.uw-text-body-sm     { font: var(--uw-body-sm-weight) var(--uw-body-sm-size)/var(--uw-body-sm-lh) var(--uw-font-sans); color: var(--uw-ink-600); }
+
+.uw-text-caption  { font: var(--uw-caption-weight) var(--uw-caption-size)/var(--uw-caption-lh) var(--uw-font-sans); letter-spacing: var(--uw-caption-track); color: var(--uw-fg-primary); }
+.uw-text-overline { font: var(--uw-overline-weight) var(--uw-overline-size)/var(--uw-overline-lh) var(--uw-font-sans); letter-spacing: var(--uw-overline-track); text-transform: uppercase; color: var(--uw-fg-primary); }
+.uw-text-button   { font: var(--uw-button-weight) var(--uw-button-size)/var(--uw-button-lh) var(--uw-font-sans); letter-spacing: var(--uw-button-track); }
+.uw-text-link     { font: var(--uw-link-weight) var(--uw-link-size)/var(--uw-link-lh) var(--uw-font-sans); color: var(--uw-fg-link); text-decoration: underline; }
+.uw-text-code     { font: var(--uw-code-weight) var(--uw-code-size)/var(--uw-code-lh) var(--uw-font-mono); color: var(--uw-ink-500); }
+.uw-text-table-title { font: var(--uw-table-title-weight) var(--uw-table-title-size)/var(--uw-table-title-lh) var(--uw-font-sans); letter-spacing: var(--uw-table-title-track); text-transform: uppercase; color: var(--uw-ink-500); }

@@ -1,0 +1,124 @@
+/*!
+ * Font Awesome 7 Pro — Self-hosted OTF
+ * OTFs live at: src/assets/fontawesome/webfonts/otfs/
+ */
+
+/* ── @font-face declarations ─────────────────────────────────────── */
+
+@font-face {
+  font-family: "Font Awesome 7 Pro";
+  src: url("../webfonts/otfs/Font Awesome 7 Pro-Solid-900.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Font Awesome 7 Pro";
+  src: url("../webfonts/otfs/Font Awesome 7 Pro-Regular-400.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Font Awesome 7 Pro";
+  src: url("../webfonts/otfs/Font Awesome 7 Pro-Light-300.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Font Awesome 7 Pro";
+  src: url("../webfonts/otfs/Font Awesome 7 Pro-Thin-100.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Font Awesome 7 Brands";
+  src: url("../webfonts/otfs/Font Awesome 7 Brands-Regular-400.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+/* ── Base rendering ──────────────────────────────────────────────── */
+.fa,
+.fa-classic,
+.fas, .fa-solid,
+.far, .fa-regular,
+.fal, .fa-light,
+.fat, .fa-thin,
+.fab, .fa-brands {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+}
+
+/* Weight → font-family mapping */
+.fa-solid,  .fas { font-family: "Font Awesome 7 Pro"; font-weight: 900; }
+.fa-regular,.far { font-family: "Font Awesome 7 Pro"; font-weight: 400; }
+.fa-light,  .fal { font-family: "Font Awesome 7 Pro"; font-weight: 300; }
+.fa-thin,   .fat { font-family: "Font Awesome 7 Pro"; font-weight: 100; }
+.fa-brands, .fab { font-family: "Font Awesome 7 Brands"; font-weight: 400; }
+
+/* Sizing helpers */
+.fa-xs   { font-size: 0.75em; }
+.fa-sm   { font-size: 0.875em; }
+.fa-lg   { font-size: 1.25em; line-height: 0.0556em; vertical-align: -0.225em; }
+.fa-xl   { font-size: 1.5em; line-height: 0.0417em; vertical-align: -0.1875em; }
+.fa-2xl  { font-size: 2em; line-height: 0.0313em; vertical-align: -0.1563em; }
+.fa-fw   { text-align: center; width: 1.25em; }
+
+/* ── Icon definitions (icons used in this project) ───────────────── */
+
+/* Navigation & layout */
+.fa-bars:before              { content: "\f0c9"; }  /* ≡ hamburger */
+.fa-house:before             { content: "\f015"; }  /* home */
+.fa-display:before           { content: "\e163"; }  /* monitor / In-Dev */
+.fa-caret-right:before       { content: "\f0da"; }  /* breadcrumb separator */
+
+/* Feedback rating */
+.fa-thumbs-up:before         { content: "\f164"; }
+.fa-thumbs-down:before       { content: "\f165"; }
+.fa-star:before              { content: "\f005"; }
+.fa-face-sad-tear:before     { content: "\f5b4"; }  /* empty-state sad face */
+
+/* Content & editing */
+.fa-pen-to-square:before     { content: "\f044"; }  /* general feedback tab */
+.fa-comment-dots:before      { content: "\f4ad"; }  /* total feedback icon */
+.fa-link:before              { content: "\f0c1"; }  /* content ID link */
+.fa-sparkles:before          { content: "\e2ae"; }  /* AI / uAsk branding */
+
+/* Search & filter */
+.fa-magnifying-glass:before  { content: "\f002"; }  /* search */
+.fa-arrow-down-wide-short:before { content: "\f160"; } /* sort */
+
+/* Trend arrows */
+.fa-arrow-trend-up:before    { content: "\e098"; }
+.fa-arrow-trend-down:before  { content: "\e097"; }
+
+/* Chevrons / pagination */
+.fa-chevron-down:before      { content: "\f078"; }
+.fa-chevron-up:before        { content: "\f077"; }
+.fa-angle-left:before        { content: "\f104"; }
+.fa-angle-right:before       { content: "\f105"; }
+.fa-angles-left:before       { content: "\f100"; }  /* ⟪ first page */
+.fa-angles-right:before      { content: "\f101"; }  /* ⟫ last page */
+
+/* User / account */
+.fa-user:before              { content: "\f007"; }
+.fa-bell:before              { content: "\f0f3"; }
+.fa-envelope:before          { content: "\f0e0"; }
+.fa-right-from-bracket:before { content: "\f2f5"; } /* sign out */
+
+/* Utility */
+.fa-check:before             { content: "\f00c"; }  /* preset chip active tick */
+.fa-xmark:before             { content: "\f00d"; }  /* close / dismiss */
