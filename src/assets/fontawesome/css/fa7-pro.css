@@ -96,6 +96,7 @@
 .fa-comment-dots:before      { content: "\f4ad"; }  /* total feedback icon */
 .fa-link:before              { content: "\f0c1"; }  /* content ID link */
 .fa-sparkles:before          { content: "\e2ae"; }  /* AI / uAsk branding */
+.fa-reply:before             { content: "\f3e5"; }  /* uAsk response pill */
 
 /* Search & filter */
 .fa-magnifying-glass:before  { content: "\f002"; }  /* search */
