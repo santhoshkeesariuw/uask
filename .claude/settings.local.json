@@ -53,7 +53,22 @@
       "Bash(python3 -m http.server 5678 --directory /Users/skeesari/Documents/Projects/b2c)",
       "Bash(git init *)",
       "Bash(git remote *)",
-      "Bash(git rm *)"
+      "Bash(git rm *)",
+      "Bash(grep -E \"^fa-\\(flag|pen-nib|flask-vial|circle-info|display|circle-question|sliders|layer-group|circle-xmark|hourglass|comment-dots|arrow-left|arrow-right|chevron-down\\)$\")",
+      "Bash(lsof -ti:5678)",
+      "Bash(xargs kill -9)",
+      "Bash(curl -s http://localhost:5678/assets/css/test.css)",
+      "Bash(curl -s http://localhost:5678/pre-med/mcat-test.html)",
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5678/pre-med/mcat.html)",
+      "Bash(python3 -m http.server 5678 --directory /Users/skeesari/Documents/Projects/b2c > /tmp/b2c-server.log 2>&1 & *)",
+      "Bash(curl -s \"http://localhost:5678/assets/js/dashboard.js\")",
+      "Bash(sed -i '' 's/tokens\\\\.css?v=7/tokens.css?v=8/g' pre-med/mcat.html pre-med/mcat-performance.html pre-med/mcat-test.html medical/step3-ccs-performance.html medical/step3-ccs-interactive.html medical/step3-ccs-test.html medical/step3-ccs.html)",
+      "Bash(sed -i '' 's/dashboard\\\\.css?v=6/dashboard.css?v=8/g; s/dashboard\\\\.css?v=7/dashboard.css?v=8/g' pre-med/mcat.html pre-med/mcat-performance.html medical/step3-ccs-performance.html medical/step3-ccs-interactive.html medical/step3-ccs.html)",
+      "Bash(/Users/skeesari/.nvm/versions/node/v20.18.1/bin/npx serve *)",
+      "Bash(command -v node)",
+      "Read(//opt/**)"
     ]
   }
 }
